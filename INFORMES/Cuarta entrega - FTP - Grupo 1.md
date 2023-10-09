@@ -42,9 +42,9 @@ sudo service vsftpd restart
 
 Una vez que hemos instalado nuestro servidor FTP, vamos a ver si funciona, para ello, descargamos [Filezilla](https://filezilla-project.org/) que es un cliente FTP. Al abrirlo nos aparecerá una ventana tal como esta:
 
-![img1](img1.jpg)
+![img1](img1.jpeg)
 
-Tendremos que conectarnos al servidor FTP ingresando la IP de la Raspberry, (que en nuestro caso es 192.168.60.19). También ingresaremos el usuario y la contraseña de nuestra Raspberry.
+Tendremos que conectarnos al servidor FTP ingresando la IP de la Raspberry, (que en nuestro caso es 192.168.1.2). También ingresaremos el usuario y la contraseña de nuestra Raspberry.
 ## Conclusión
 
 En esta cuarta entrega, pudimos cumplir nuestro objetivo exitosamente, conociendo principalmente lo que es un Servidor FTP, que significa “File Transfer Protocol”, Protocolo para la Transferencia de Archivos. Donde la función del mismo es permitir el desplazamiento de datos entre diferentes servidores / ordenadores. Es decir que un cliente puede subir archivos al servidor para que otros puedan acceder a él.
