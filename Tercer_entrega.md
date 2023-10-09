@@ -3,7 +3,8 @@
 1. [Introducción](#introducción)
 2. [Instalación del servidor dhcp](#instalación-del-servidor-dhcp)
 3. [Configuración](#configuración)
-4. [Conclusión](#conclusión)
+4. [Conexión al servicio](#conexión-al-servicio)
+5. [Conclusión](#conclusión)
 
 # Introducción:
 
@@ -33,18 +34,18 @@ Primero que todo hay que editar el archivo etc/network/interfaces e introducir l
 ```bash
 auto eth0
     iface eth0 inet static
-    address 192.168.1.2
+    address 192.169.1.2
     netmask 255.255.255.0
-    gateway 192.168.1.1
+    gateway 192.169.1.1
 ```
 En este paso, lo que hacemos es asignarle una ip al servidor dhcp de nuestra Raspberry, también definiremos una ip gateway y una máscara de red.
 
 Luego tendremos que editar el archivo etc/dhcp/dhcpd.conf y seleccionamos el rango de ip's para nuestra red:
 
 ```
-subnet 192.168.1.0 netmask 255.255.255.0 {
-    range 192.168.1.100 192.168.1.200;
-    option routers 192.168.1.1;
+subnet 192.169.1.0 netmask 255.255.255.0 {
+    range 192.169.1.100 192.169.1.200;
+    option routers 192.169.1.1;
     option domain-name-servers 8.8.8.8, 8.8.4.4;
 }
 ```
@@ -59,8 +60,8 @@ Otro paso que realizamos fue editar el archivo etc/dhcpcd.conf para agregar los 
 
 ```bash
 interface eth0
-static routers=192.168.1.1
-dhcp-range=192.168.1.3,192.168.10,255.255.255.0,24h
+static routers=192.169.1.1
+dhcp-range=192.169.1.3,192.169.10,255.255.255.0,24h
 ```
 
 Posteriormente reiniciamos el servicio dhcp:
@@ -70,6 +71,20 @@ sudo service isc-dhcp-server restart
 sudo systemctl enable isc-dhcp-server
 sudo reboot
 sudo systemctl start isc-dhcp-server
+```
+# Conexión al servicio
+
+Ahora, desde una computadora externa, preferentemente con el sistema operativo Linux funcionando, conectada serialmente mediante un switch a la Raspberry, pediremos una IP al servidor DHCP mediante los siguientes comandos:
+
+```bash
+sudo dhclient -r
+sudo dhclient
+```
+
+Y finalmente si necesitamos ver la IP de nuestra computadora, tendremos que correr el siguiente comando:
+
+```bash
+hostname -I
 ```
 
 # Conclusión
