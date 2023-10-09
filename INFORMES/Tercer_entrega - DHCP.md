@@ -1,4 +1,4 @@
-# Tercer entrega - Xorg - Grupo 1
+# Tercer entrega - DHCP - Grupo 1
 # Índice 
 1. [Introducción](#introducción)
 2. [Instalación del servidor dhcp](#instalación-del-servidor-dhcp)
